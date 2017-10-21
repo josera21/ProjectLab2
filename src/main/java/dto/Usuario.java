@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
  * @author josera
  */
 @Entity
-public class Estudiante {
+public class Usuario {
     @Id
     private String cedula;
     

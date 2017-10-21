@@ -8,7 +8,7 @@ package principal;
 import dao.HibernateDAO;
 import dao.IHibernateDAO;
 import dto.Carrera;
-import dto.Estudiante;
+import dto.Usuario;
 import java.io.File;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -37,7 +37,7 @@ public class Main {
             hibernateDAO.saveOrUpdate(carrera);
 
             // Guardo un estudiante
-            Estudiante estudiante = new Estudiante();
+            Usuario estudiante = new Usuario();
             estudiante.setCedula("24386994");
             estudiante.setNombre("Jose");
             estudiante.setApellido("Camacaro");
@@ -46,10 +46,10 @@ public class Main {
             estudiante.setTelefono("0414");
             estudiante.setCarrera(carrera);
 
-            servicio.guardarEstudiante(estudiante);
+            servicio.guardarUsuario(estudiante);
 
             // Guardo otro estudiante
-            Estudiante estudiante2 = new Estudiante();
+            Usuario estudiante2 = new Usuario();
             estudiante2.setCedula("21995512");
             estudiante2.setNombre("Rafael");
             estudiante2.setApellido("Barraez");
@@ -58,18 +58,18 @@ public class Main {
             estudiante2.setTelefono("0416");
             estudiante2.setCarrera(carrera);
 
-            servicio.guardarEstudiante(estudiante2);
+            servicio.guardarUsuario(estudiante2);
 
-            List<Estudiante> listado = servicio.buscarEstudiantesTodos();
+            List<Usuario> listado = servicio.buscarUsuariosTodos();
             
             System.out.println("** Estudiantes registrados **");
-            for (Estudiante est : listado)
+            for (Usuario est : listado)
             {   
                 System.out.println(est.getCedula());
             }
 
-            estudiante2 = servicio.buscarEstudiantePorCedula("21995512");
-            servicio.eliminarEstudiante(estudiante2);
+            estudiante2 = servicio.buscarUsuarioPorCedula("21995512");
+            servicio.eliminarUsuario(estudiante2);
             System.out.println("Ejecucion Terminada!");
         }
         catch (Throwable ex) {

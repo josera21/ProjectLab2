@@ -24,7 +24,7 @@
         <!-- Echo all executed SQL to stdout -->
 	<property name="hbm2ddl.auto">update</property>
         
-        <mapping class="dto.Estudiante"/>
+        <mapping class="dto.Usuario"/>
         <mapping class="dto.Carrera"/>
         <mapping class="dto.Decanato"/>
     </session-factory>

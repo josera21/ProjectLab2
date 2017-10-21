@@ -6,7 +6,7 @@
 package servicio.implementacion;
 
 import dao.IHibernateDAO;
-import dto.Estudiante;
+import dto.Usuario;
 import java.util.List;
 import servicio.IServicio;
 
@@ -26,30 +26,30 @@ public class Servicio implements IServicio {
     }
     
     @Override
-    public void guardarEstudiante(Estudiante estudiante) throws Exception {
-        if (estudiante.getCedula() == null)
+    public void guardarUsuario(Usuario usuario) throws Exception {
+        if (usuario.getCedula() == null)
         {
             throw new Exception("Debe Insertar La Cedula");
         }
-        else if (estudiante.getCedula().trim().equals(""))
+        else if (usuario.getCedula().trim().equals(""))
         {
             throw new Exception("Debe Insertar La Cedula");
         }
-        hibernateDAO.saveOrUpdate(estudiante);
+        hibernateDAO.saveOrUpdate(usuario);
     }
     
     @Override
-    public Estudiante buscarEstudiantePorCedula(String cedula) {
-        return (Estudiante) hibernateDAO.findByKey(Estudiante.class, cedula);
+    public Usuario buscarUsuarioPorCedula(String cedula) {
+        return (Usuario) hibernateDAO.findByKey(Usuario.class, cedula);
     }
 
     @Override
-    public List buscarEstudiantesTodos() {
-        return hibernateDAO.loadAll(Estudiante.class);
+    public List buscarUsuariosTodos() {
+        return hibernateDAO.loadAll(Usuario.class);
     }
 
     @Override
-    public void eliminarEstudiante(Estudiante estudiante) {
-        hibernateDAO.delete(estudiante);
+    public void eliminarUsuario(Usuario usuario) {
+        hibernateDAO.delete(usuario);
     }
 }

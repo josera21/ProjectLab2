@@ -6,7 +6,7 @@
 package servicio;
 
 import dao.IHibernateDAO;
-import dto.Estudiante;
+import dto.Usuario;
 import java.util.List;
 
 /**
@@ -14,9 +14,9 @@ import java.util.List;
  * @author josera
  */
 public interface IServicio {
-    public void guardarEstudiante(Estudiante estudiante) throws Exception;
+    public void guardarUsuario(Usuario usuario) throws Exception;
     public void setHibernateDAO(IHibernateDAO hibernateDAO);
-    public Estudiante buscarEstudiantePorCedula(String cedula);
-    public List buscarEstudiantesTodos();
-    public void eliminarEstudiante(Estudiante estudiante);
+    public Usuario buscarUsuarioPorCedula(String cedula);
+    public List buscarUsuariosTodos();
+    public void eliminarUsuario(Usuario usuario);
 }
