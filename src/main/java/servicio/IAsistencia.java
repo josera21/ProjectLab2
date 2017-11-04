@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author josera
  */
-public interface IServicio {
+public interface IAsistencia {
     public void guardarUsuario(Usuario usuario) throws Exception;
     public void setHibernateDAO(IHibernateDAO hibernateDAO);
     public Usuario buscarUsuarioPorCedula(String cedula);

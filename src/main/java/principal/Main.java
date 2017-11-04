@@ -13,8 +13,8 @@ import java.io.File;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import servicio.IServicio;
-import servicio.implementacion.Servicio;
+import servicio.implementacion.Asistencia;
+import servicio.IAsistencia;
 
 /**
  *
@@ -27,8 +27,8 @@ public class Main {
         
             IHibernateDAO hibernateDAO = new HibernateDAO();
             hibernateDAO.setSessionFactory(sessionFactory);
-            IServicio servicio = new Servicio();
-            servicio.setHibernateDAO(hibernateDAO);
+            IAsistencia asistencia = new Asistencia();
+            asistencia.setHibernateDAO(hibernateDAO);
 
             // Guardo una carrera
             Carrera carrera = new Carrera();
@@ -46,7 +46,7 @@ public class Main {
             estudiante.setTelefono("0414");
             estudiante.setCarrera(carrera);
 
-            servicio.guardarUsuario(estudiante);
+            asistencia.guardarUsuario(estudiante);
 
             // Guardo otro estudiante
             Usuario estudiante2 = new Usuario();
@@ -58,9 +58,9 @@ public class Main {
             estudiante2.setTelefono("0416");
             estudiante2.setCarrera(carrera);
 
-            servicio.guardarUsuario(estudiante2);
+            asistencia.guardarUsuario(estudiante2);
 
-            List<Usuario> listado = servicio.buscarUsuariosTodos();
+            List<Usuario> listado = asistencia.buscarUsuariosTodos();
             
             System.out.println("** Estudiantes registrados **");
             for (Usuario est : listado)
@@ -68,8 +68,8 @@ public class Main {
                 System.out.println(est.getCedula());
             }
 
-            estudiante2 = servicio.buscarUsuarioPorCedula("21995512");
-            servicio.eliminarUsuario(estudiante2);
+            estudiante2 = asistencia.buscarUsuarioPorCedula("21995512");
+            asistencia.eliminarUsuario(estudiante2);
             System.out.println("Ejecucion Terminada!");
         }
         catch (Throwable ex) {

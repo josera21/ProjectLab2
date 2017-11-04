@@ -8,13 +8,13 @@ package servicio.implementacion;
 import dao.IHibernateDAO;
 import dto.Usuario;
 import java.util.List;
-import servicio.IServicio;
+import servicio.IAsistencia;
 
 /**
  *
  * @author josera
  */
-public class Servicio implements IServicio {
+public class Asistencia implements IAsistencia {
     IHibernateDAO hibernateDAO;
     
     public IHibernateDAO getHibernateDAO() {
