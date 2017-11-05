@@ -88,4 +88,18 @@ public class Servicio implements Serializable{
     public void setTipoServicio(String tipoServicio) {
         this.tipoServicio = tipoServicio;
     }
+
+    /**
+     * @return the articulo
+     */
+    public Articulo getArticulo() {
+        return articulo;
+    }
+
+    /**
+     * @param articulo the articulo to set
+     */
+    public void setArticulo(Articulo articulo) {
+        this.articulo = articulo;
+    }
 }
