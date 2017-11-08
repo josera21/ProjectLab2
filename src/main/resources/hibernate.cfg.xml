@@ -27,5 +27,9 @@
         <mapping class="dto.Usuario"/>
         <mapping class="dto.Carrera"/>
         <mapping class="dto.Decanato"/>
+        <mapping class="dto.Servicio"/>
+        <mapping class="dto.TipoArticulo"/>
+        <mapping class="dto.Articulo"/>
+        <mapping class="dto.Imagenes"/>
     </session-factory>
 </hibernate-configuration>

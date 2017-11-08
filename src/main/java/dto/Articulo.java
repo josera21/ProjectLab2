@@ -5,12 +5,15 @@
  */
 package dto;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -29,6 +32,9 @@ public class Articulo {
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="tipoArticulo")
     private TipoArticulo tipoArticulo;
+    
+    @OneToMany(fetch=FetchType.LAZY, cascade={javax.persistence.CascadeType.ALL})
+    private Set<Servicio> servicios = new HashSet();
 
     /**
      * @return the codigo
@@ -112,6 +118,20 @@ public class Articulo {
      */
     public void setMonto(float monto) {
         this.monto = monto;
+    }
+
+    /**
+     * @return the servicios
+     */
+    public Set<Servicio> getServicios() {
+        return servicios;
+    }
+
+    /**
+     * @param servicios the servicios to set
+     */
+    public void setServicios(Set<Servicio> servicios) {
+        this.servicios = servicios;
     }
     
 }

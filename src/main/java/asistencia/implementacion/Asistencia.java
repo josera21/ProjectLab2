@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servicio.implementacion;
+package asistencia.implementacion;
 
 import dao.IHibernateDAO;
 import dto.Usuario;
 import java.util.List;
-import servicio.IAsistencia;
+import asistencia.IAsistencia;
+import dto.Articulo;
+import dto.Carrera;
 
 /**
  *
@@ -36,6 +38,24 @@ public class Asistencia implements IAsistencia {
             throw new Exception("Debe Insertar La Cedula");
         }
         hibernateDAO.saveOrUpdate(usuario);
+    }
+    
+    @Override
+    public void guardarArticulo(Articulo articulo) throws Exception {
+        if(articulo.getServicios().isEmpty()) {
+            throw new Exception("Debe agregar la informacion del servicio primero.");
+        }
+        hibernateDAO.saveOrUpdate(articulo);
+    }
+    
+    @Override
+    public void guardarCarrera(Carrera carrera) throws Exception {
+         if(carrera.getDecanato() == null) {
+             throw new Exception("La carrera debe tener un Decanato");
+         }
+         else {
+             hibernateDAO.saveOrUpdate(carrera);
+         }
     }
     
     @Override

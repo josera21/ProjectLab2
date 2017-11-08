@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servicio;
+package asistencia;
 
 import dao.IHibernateDAO;
+import dto.Articulo;
+import dto.Carrera;
 import dto.Usuario;
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
  */
 public interface IAsistencia {
     public void guardarUsuario(Usuario usuario) throws Exception;
+    public void guardarArticulo(Articulo articulo) throws Exception;
+    public void guardarCarrera(Carrera carrera) throws Exception;
     public void setHibernateDAO(IHibernateDAO hibernateDAO);
     public Usuario buscarUsuarioPorCedula(String cedula);
     public List buscarUsuariosTodos();

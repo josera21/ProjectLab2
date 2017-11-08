@@ -7,14 +7,17 @@ package principal;
 
 import dao.HibernateDAO;
 import dao.IHibernateDAO;
+import dto.Articulo;
 import dto.Carrera;
+import dto.Decanato;
 import dto.Usuario;
 import java.io.File;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import servicio.implementacion.Asistencia;
-import servicio.IAsistencia;
+import asistencia.implementacion.Asistencia;
+import asistencia.IAsistencia;
+import dto.Servicio;
 
 /**
  *
@@ -29,13 +32,22 @@ public class Main {
             hibernateDAO.setSessionFactory(sessionFactory);
             IAsistencia asistencia = new Asistencia();
             asistencia.setHibernateDAO(hibernateDAO);
-
+            
+            // Guardo un decanato
+            Decanato decanato = new Decanato();
+            decanato.setNombre("Ciencias y Tecnologia");
+            decanato.setDireccion("Av. Florencio Jimenez");
+            hibernateDAO.saveOrUpdate(decanato);
+            
+            
             // Guardo una carrera
             Carrera carrera = new Carrera();
             carrera.setCodigo(1);
             carrera.setNombre("Ing. Informatica");
-            hibernateDAO.saveOrUpdate(carrera);
-
+            carrera.setDecanato(decanato);
+            
+            asistencia.guardarCarrera(carrera);
+            
             // Guardo un estudiante
             Usuario estudiante = new Usuario();
             estudiante.setCedula("24386994");
@@ -60,6 +72,25 @@ public class Main {
 
             asistencia.guardarUsuario(estudiante2);
 
+            // Guardo un Articulo
+            Articulo articulo = new Articulo();
+            articulo.setNombre("Calculadora");
+            articulo.setDescripcion("Vendo calculadora en buen estado");
+            articulo.setMonto(50000);
+            articulo.setEstado("En venta");
+            
+            // Instancio el servicio
+            Servicio servicio = new Servicio();
+            servicio.setTipoServicio("Venta");
+            servicio.setArticulo(articulo);
+            servicio.setUsuario(estudiante);
+            servicio.setArticulocodigo(Integer.toString(articulo.getCodigo()));
+            servicio.setUsuariocedula(estudiante.getCedula());
+            
+            articulo.getServicios().add(servicio);
+            // Guardo el Articulo
+            asistencia.guardarArticulo(articulo);
+                    
             List<Usuario> listado = asistencia.buscarUsuariosTodos();
             
             System.out.println("** Estudiantes registrados **");
