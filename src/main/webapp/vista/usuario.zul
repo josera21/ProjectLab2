@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="usuario" border="normal" width="600px" sclass="center top-space">
+        <grid>
+            <rows>
+                <row>
+                    Cedula:
+                    <textbox id="cedula" maxlength="10" cols="10" />
+                </row>
+                <row>
+                    Nombre:
+                    <textbox id="nombre" maxlength="30" cols="30" />
+                </row>
+                <row>
+                    Apellido:
+                    <textbox id="apellido" maxlength="40" cols="40" />
+                </row>
+                <row>
+                    Correo:
+                    <textbox id="correo" maxlength="50" cols="50" />
+                </row>
+                <row>
+                    Direccion:
+                    <textbox id="direccion" maxlength="70" cols="70" />
+                </row>
+            </rows>
+        </grid>
+    </window>
+</zk>

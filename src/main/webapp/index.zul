@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="Inicio" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+
+<zk>
+    <borderlayout width="100%" height="50px">
+        <north height="15%" border="none" >
+            <div sclass="banner">
+                
+            </div>
+        </north>
+    </borderlayout>
+    
+    <div>
+        <div align="center">
+            <menubar id="menubar">
+                <menu label="Institucion" >
+                    <menupopup>                                        
+                        <menuitem label="Registrar Decanato" href="/vista/decanato.zul"/>
+                        <menuitem label="Registrar Carrera" href="/vista/carrera.zul"/>
+                        <menuseparator/>
+                    </menupopup>
+	    	</menu>
+                        
+                <menu label="Servicios" >
+                    <menupopup>                                        
+                        <menuitem label="Publicar articulos" href="/vista/articulo.zul" />                                  
+                        <menuseparator/>
+                    </menupopup>
+                </menu>
+           
+                <menu label="Usuarios" >
+                    <menupopup>
+                        <menuitem label="Registrar"  href="/vista/usuario.zul" />
+                        <menuitem label="Ingresar"  href="/vista/IngresarCliente.zul" />	    				
+                    </menupopup>
+                </menu>
+            </menubar>
+        </div>
+    </div>
+    
+    
+</zk>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"  arg0="./lstCarros" ?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+
+    <window id="listDecanatos" title="Busqueda de Decanatos" width="600px" border="normal">
+        <zscript>
+            <![CDATA[
+                List decanatos = new ArrayList();
+            ]]>
+        </zscript>
+        <hbox align="center">
+            Palabra de Busqueda:
+            <textbox id="keywordBox" />
+            <button id="btnBuscar" label="Search" image="/img/buscar.png" >
+                <attribute name="onClick">
+                        <![CDATA[
+                                buscarCarros();		
+                        ]]>
+                </attribute>
+            </button>
+        </hbox>
+        
+        <listbox id="box" height="160px" emptyMessage="No Hay Decanatos con Dicho Criterio" model="@{carrosEnc}">
+            <attribute name="onSelect">
+                <![CDATA[
+                    // Esta parte deberia traerse desde la BD
+                    dto.Carro carrSel = (dto.Carro)((Listitem) self.getSelectedItem()).getValue();
+                    binder.loadAll();
+                ]]>
+            </attribute>
+            <listhead>
+                <listheader label="Nombre" />
+                <listheader label="Direccion" />
+                <listheader label="$ Precio" width="20%"/>
+            </listhead>
+	    <listitem sclass="row-border item" self="@{each=objeto}" value="@{objeto}">
+                <listcell label="@{objeto.modelo}"/>
+                <listcell label="@{objeto.marca}"/>
+                <listcell label="@{objeto.precio}"/>
+	    </listitem>
+	</listbox>
+	<hbox style="margin-top:20px">
+            <image id="previewImage" width="250px" />
+            <vbox>
+                <label id="modelLabel" value="@{carrSel.modelo}"/>
+                <label id="makeLabel"  value="@{carrSel.marca}"/>
+                <label id="priceLabel"  value="@{carrSel.precio}"/>
+                <label id="descriptionLabel"  value="@{carrSel.descripcion}"/>
+            </vbox>
+	</hbox>
+    </window>
+    
+</zk>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Articulo" border="normal" sclass="center top-space" width="600px">
+        <grid>
+            <rows>
+                <row>
+                    Nombre:
+                    <textbox id="nombre" maxlength="30" cols="30" />
+                </row>
+                <row>
+                    Descripcion:
+                    <textbox id="descripcion" maxlength="60" cols="60" />
+                </row>
+                <row>
+                    Estado:
+                    <textbox id="estado" maxlength="30" cols="30" />
+                </row>
+                <row>
+                    Monto $:
+                    <textbox id="monto" maxlength="30" cols="30" />
+                </row>
+            </rows>
+        </grid>
+    </window>
+</zk>

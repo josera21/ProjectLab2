@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Decanato" border="normal" width="400px" sclass="center top-space" >
+        <grid>
+            <rows>
+                <row>
+                    Nombre:
+                    <textbox id="nombre" maxlength="60" cols="60" />
+                </row>
+                <row>
+                    Direccion:
+                    <textbox id="direccion" maxlength="70" cols="70" />
+                </row>
+            </rows>
+        </grid>
+    </window>
+</zk>

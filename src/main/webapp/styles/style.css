@@ -1,0 +1,162 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19/11/2017, 05:45:21 PM
+    Author     : josera
+*/
+
+@CHARSET "ISO-8859-1";
+
+body {
+    background-color: #DDDDDD;
+}
+
+.banner {
+    background-color:#2E2E2E;
+    color: white;
+    padding-top: 5px;
+}
+.center{
+    margin-left: 30%;
+}
+
+.top-space {
+    margin-top: 1.2em;
+}
+
+.footer {
+    background-color:#2E2E2E;
+    color: white;
+    padding-top: 5px;
+}
+
+.banner-head{
+    font-size: 50px;
+    padding: 5px 10px;
+}
+
+.clase {
+    background: blue;
+}
+
+.id {
+    color:gray;
+    font-size:30px;
+}
+
+.norte{
+    background: rgb(27,161,226);
+}
+
+.sur{
+    background: rgb(27,161,226);
+    color:white;
+    font-style: italic;
+}
+.este{
+    background: white;
+}
+.oeste{
+    background:white;
+}
+.centro{
+    background: #F5DA81;
+}
+
+#twitter-widget-0 { 
+    width: 100% !important; 
+}
+.div-ventana{
+    min-width: 1020px;
+}
+
+.row-seleccionado{
+    background: cadetblue;
+}
+
+.label-seleccionado{
+    color:white;
+}
+
+.espaciofilasgrid{
+    height: 85px;
+}
+
+.labelperfil{
+    font-size: 30px;
+    font-family: Arial;
+    color:white;
+}
+
+.txtperfil{
+    font-size: 20px;
+    font-family: Arial;
+    color:white;
+    border-style: none;
+}
+
+.label{
+    font-size: 20px;
+    font-family: Arial;
+    color:white;
+    border-style: none;
+}
+
+.txtventanaregistro{
+    font-size: 20px;
+    font-family: Arial;
+    color:white;
+    border-style: solid;	
+}
+
+.txttotalsaldo{
+    font-size: 20px;
+    font-family: Arial;
+    color:white;
+    border-style: solid;
+}
+
+.txtmontoretiro{
+    font-size: 20px;
+    font-family: Arial;
+    color:white;
+    border-style: solid;
+}
+.labelregistrocliente{
+    background:orange;
+    font-size:20px;
+    color:white;
+    font-family: Arial;
+}
+
+.ListaContacto{
+    font-size: 20px;
+    font-family: Arial;
+    color:white;
+}
+
+.main {
+    padding : 0 80px;           
+    zoom : 1;
+}
+
+/*Following CSS refer to Zoomer Gallery's Document'*/
+.main li {
+    height: 100px;
+    width: 130px;
+    position: relative;
+    float: left;
+    list-style:none outside none; 
+    margin: 30px 30px 0 0;
+}
+
+.main li img { 
+    height: 100px;
+    width: 130px;
+    border:3px solid #DDDDDD; 
+    position: absolute;
+    -ms-interpolation-mode: bicubic;
+}    

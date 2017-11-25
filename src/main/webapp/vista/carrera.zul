@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+
+    <window title="Carrera" border="normal" width="600px" sclass="center top-space">
+        <grid>
+            <rows>
+                <row>
+                    Codigo: 
+                    <textbox id="codigo" maxlength="10" cols="10" />
+                </row>
+                <row>
+                    Nombre: 
+                    <textbox id="nombre" maxlength="60" cols="60" />
+                </row>
+                <row>
+                    Direccion: 
+                    <textbox id="direccion" maxlength="70" cols="70" />
+                </row>
+            </rows>
+        </grid>
+    </window>
+    
+</zk>
