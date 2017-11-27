@@ -1,43 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?page title="Inicio" contentType="text/html;charset=UTF-8"?>
 <?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+<?link rel="stylesheet" type="text/css" href="/styles/header.css"?>
 
-<zk>
-    <borderlayout width="100%" height="50px">
-        <north height="15%" border="none" >
-            <div sclass="banner">
-                
-            </div>
-        </north>
-    </borderlayout>
-    
+<zk xmlns="http://www.zkoss.org/2005/zul">
+
     <div>
-        <div align="center">
-            <menubar id="menubar">
-                <menu label="Institucion" >
-                    <menupopup>                                        
-                        <menuitem label="Registrar Decanato" href="/vista/decanato.zul"/>
-                        <menuitem label="Registrar Carrera" href="/vista/carrera.zul"/>
-                        <menuseparator/>
-                    </menupopup>
-	    	</menu>
-                        
-                <menu label="Servicios" >
-                    <menupopup>                                        
-                        <menuitem label="Publicar articulos" href="/vista/articulo.zul" />                                  
-                        <menuseparator/>
-                    </menupopup>
-                </menu>
-           
-                <menu label="Usuarios" >
-                    <menupopup>
-                        <menuitem label="Registrar"  href="/vista/usuario.zul" />
-                        <menuitem label="Ingresar"  href="/vista/IngresarCliente.zul" />	    				
-                    </menupopup>
-                </menu>
-            </menubar>
-        </div>
+        <borderlayout sclass="complex-layout" height="720px">
+            <!-- Header -->
+            <?init class="org.zkoss.zk.ui.util.Composition" arg0="header.zul"?>
+            <!-- Sidebar -->
+            <west width="200px" border="0" flex="true" splittable="true"
+                margins="0,5,0,0">
+                <vlayout spacing="0">
+                    <panel width="100%" border="normal"
+                        title="Navegacion">
+                        <panelchildren style="padding:5px;">
+                            <vbox>
+                                <toolbarbutton label="Inicio" href="index.zul"/>
+                                <toolbarbutton label="Decanatos" href="vista/decanato.zul"/>
+                                <toolbarbutton label="Carreras" href="vista/carrera.zul"/>
+                                <toolbarbutton label="Publicaciones" href="vista/articulo.zul" />
+                            </vbox>
+                        </panelchildren>
+                    </panel>
+                </vlayout>
+            </west>
+            
+            <!-- Content -->
+            <center>
+                <borderlayout sclass="inner-border">
+                    <north border="0" height="4%" margins="2,3,0,0">
+                        <label value="HOME" style="font-size:20px;" />
+                    </north>
+                    <center border="0" margins="0,3,3,3">
+                        <panel title="¿Que podras hacer aqui?" border="normal"
+                            height="80%">
+                            <panelchildren>
+                                <grid style="border:0;">
+                                    <rows>
+                                        <row>
+                                            <div>
+                                                <image
+                                                    src="/img/sale-icon.svg" sclass="img-home" />
+                                                <separator
+                                                    orient="vertical" />
+                                                <toolbarbutton
+                                                    label="Vender Articulos" />
+                                            </div>
+                                        </row>
+                                        <row>
+                                            <div>
+                                                <image
+                                                    src="/img/search-icon.svg" sclass="img-home"/>
+                                                <separator
+                                                    orient="vertical" />
+                                                <toolbarbutton
+                                                    label="Buscar tus Objetos perdidos" />
+                                            </div>
+                                        </row>
+                                        <row>
+                                            <div>
+                                                <image
+                                                    src="/img/exchange-icon.png" sclass="img-home" />
+                                                <separator
+                                                    orient="vertical" />
+                                                <toolbarbutton
+                                                    label="Intercambiar objetos y guias" />
+                                            </div>
+                                        </row>
+                                    </rows>
+                                </grid>
+                            </panelchildren>
+                        </panel>
+                    </center>
+                    <east>
+                        <vlayout spacing="10px">
+                            <panel width="100%" border="normal"
+                                title="Porque UCLA-SEEKER? ">
+                                <panelchildren>
+                                    <html>
+                                        <![CDATA[ <ul> <li>Productividad</li>
+                                        <li>Seguridad</li> <li>Rendimiento</li>
+                                        <li>Flexibilidad</li> </ul> ]]>
+                                    </html>
+                                </panelchildren>
+                            </panel>
+                            <panel width="100%" border="normal" title="Iniciar Sesion">
+                                <panelchildren>
+                                    <toolbar mold="panel" align="center">
+                                        <toolbarbutton label="Ingresar" href="vista/ingresar.zul" ></toolbarbutton>
+                                    </toolbar>
+                                </panelchildren>
+                            </panel>
+                        </vlayout>
+                    </east>
+                </borderlayout>
+            </center>
+            <south size="100px" border="0"
+                style="background: none repeat scroll 0 0; ">
+                <toolbar mold="panel" align="center">
+                    <toolbarbutton label="Twitter" />
+                    <toolbarbutton label="Facebook" />
+                    <toolbarbutton label="Instagram" />
+                    <toolbarbutton label="Terminos" />
+                    <toolbarbutton label="Reportar Abuso" />
+                    <separator orient="vertical" bar="true" />
+                    Powered by ZK ${desktop.webApp.version} ZK
+                    Borderlayout
+                </toolbar>
+            </south>
+        </borderlayout>
     </div>
-    
-    
 </zk>

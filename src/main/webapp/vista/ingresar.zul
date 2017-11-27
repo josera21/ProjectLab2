@@ -3,26 +3,28 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Decanato" border="normal" width="800px" height="400px"  sclass="center top-space" >
+    <window title="Iniciar Sesion" sclass="center top-space" border="normal"
+            width="400px">       
         <grid>
             <columns>
                 <column label="Campos" width="120px" />
                 <column label="Contenido" />
             </columns>
-            <rows>
+             <rows>
+               <row>  
+                    Usuario:
+                    <textbox id="rif" maxlength="16" cols="16"/>
+                </row>	
+
                 <row>
-                    Nombre:
-                    <textbox id="nombre" maxlength="60" cols="60"/>
+                   Contraseña: 
+                   <textbox type="password" id="password" maxlength="16" cols="16"/>
                 </row>
-                <row>
-                    Direccion:
-                    <textbox id="direccion" maxlength="60" cols="60" />
-                </row>
-            </rows>
+            </rows>    
         </grid>
         <div sclass="top-space" >
-            <button label="Registrar" width="100px" height="40px" sclass="btn top-space" />
+            <button  sclass="btn" id="login" label="Ingresar" width="100px" height="40px"/>
             <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey" />
         </div>
-    </window>
+    </window>   
 </zk>

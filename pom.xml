@@ -9,13 +9,49 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <org.springframework-version>4.0.3.RELEASE</org.springframework-version>
     </properties>
     
     <dependencies>
+        <!--Hibernate-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.2.10.Final</version>
+        </dependency>
+        <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>5.2.10.Final</version>
+        </dependency>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${org.springframework-version}</version>
+            <exclusions>
+                <!-- Exclude Commons Logging in favor of SLF4j -->
+                <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                 </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${org.springframework-version}</version>
+        </dependency>
+        <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${org.springframework-version}</version>
+        </dependency>
+        <!-- Spring ORM -->
+        <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${org.springframework-version}</version>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>
@@ -33,25 +69,26 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.6</version>
         </dependency>
+        <!--ZK-->
         <dependency>
             <groupId>org.zkoss.zk</groupId>
             <artifactId>zkbind</artifactId>
-            <version>6.5.2</version>
+            <version>8.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.zkoss.zk</groupId>
             <artifactId>zul</artifactId>
-            <version>6.5.2</version>
+            <version>8.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.zkoss.zk</groupId>
             <artifactId>zkplus</artifactId>
-            <version>6.5.2</version>
+            <version>8.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.zkoss.zk</groupId>
             <artifactId>zhtml</artifactId>
-            <version>6.5.2</version>
+            <version>8.5.0</version>
         </dependency>
     </dependencies>
     

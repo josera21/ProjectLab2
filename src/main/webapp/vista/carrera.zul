@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-
-    <window title="Carrera" border="normal" width="600px" sclass="center top-space">
+    <window title="Carrera" border="normal" width="800px" sclass="center top-space">
         <grid>
+            <columns>
+                <column label="Campos" width="120px" />
+                <column label="Contenido" />
+            </columns>
             <rows>
                 <row>
                     Codigo: 
-                    <textbox id="codigo" maxlength="10" cols="10" />
+                    <textbox id="codigo" maxlength="10" cols="12" />
                 </row>
                 <row>
                     Nombre: 
@@ -16,10 +20,13 @@
                 </row>
                 <row>
                     Direccion: 
-                    <textbox id="direccion" maxlength="70" cols="70" />
+                    <textbox id="direccion" maxlength="60" cols="60" />
                 </row>
             </rows>
         </grid>
+        <div sclass="top-space" >
+            <button label="Registrar" width="100px" height="40px" sclass="btn top-space" />
+            <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey" />
+        </div>
     </window>
-    
 </zk>

@@ -17,14 +17,26 @@ body {
 .banner {
     background-color:#2E2E2E;
     color: white;
-    padding-top: 5px;
+    padding-top: 50px;
 }
 .center{
-    margin-left: 30%;
+    margin: auto;
+    width: 50%;
+    border: 3px solid #90A4AE;
+    padding: 10px;
 }
 
 .top-space {
     margin-top: 1.2em;
+}
+
+.bottom-space {
+    margin-bottom: 1.2em;
+}
+
+.img-home {
+    width: 65px;
+    height: 65px;
 }
 
 .footer {
@@ -45,6 +57,15 @@ body {
 .id {
     color:gray;
     font-size:30px;
+}
+
+.btn {
+    margin: 1px 1px 1px 1px;
+}
+
+.btn-grey {
+    background-color: #607D8B;
+    color: white;
 }
 
 .norte{

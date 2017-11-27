@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <div sclass="bottom-space">
+        <div align="center">
+            <menubar id="menubar" >
+                <menu label="Institucion" >
+                    <menupopup>                                        
+                        <menuitem label="Registrar Decanato" href="/vista/decanato.zul"/>
+                        <menuitem label="Registrar Carrera" href="/vista/carrera.zul"/>
+                        <menuseparator/>
+                    </menupopup>
+	    	</menu>
+                        
+                <menu label="Servicios" >
+                    <menupopup>                                        
+                        <menuitem label="Publicar articulos" href="/vista/articulo.zul" />                                  
+                        <menuseparator/>
+                    </menupopup>
+                </menu>
+           
+                <menu label="Usuarios" >
+                    <menupopup>
+                        <menuitem label="Registrar"  href="/vista/usuario.zul" />
+                        <menuitem label="Ingresar"  href="/vista/ingresar.zul" />	    				
+                    </menupopup>
+                </menu>
+            </menubar>
+        </div>
+    </div>
+</zk>

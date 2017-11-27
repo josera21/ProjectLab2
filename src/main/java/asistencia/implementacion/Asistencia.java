@@ -11,6 +11,8 @@ import java.util.List;
 import asistencia.IAsistencia;
 import dto.Articulo;
 import dto.Carrera;
+import dto.Decanato;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -71,5 +73,22 @@ public class Asistencia implements IAsistencia {
     @Override
     public void eliminarUsuario(Usuario usuario) {
         hibernateDAO.delete(usuario);
+    }
+
+    @Override
+    @Transactional
+    public void guardarDecanato(Decanato decanato) throws Exception {
+        this.hibernateDAO.saveOrUpdate(decanato);
+    }
+
+    @Override
+    @Transactional
+    public List listDecanatos() {
+        return hibernateDAO.loadAll(Decanato.class);
+    }
+
+    @Override
+    public void eliminarDecanato(Decanato decanato) {
+        hibernateDAO.delete(decanato);
     }
 }

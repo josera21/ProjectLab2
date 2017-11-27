@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+<?link rel="stylesheet" type="text/css" href="/styles/header.css"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <div>
+        <borderlayout sclass="complex-layout" height="70px">
+            <north size="60px" border="0" sclass="bottom-space">
+                <div sclass="bottom-space">
+                    <image sclass="complex-layout-header-img"
+                        src="/img/empresa-icon.png" />
+                    <label sclass="complex-layout-header-label top-space"
+                        value="UCLA-SEEKER" />
+                </div>
+            </north>
+        </borderlayout>
+    </div>
+</zk>
