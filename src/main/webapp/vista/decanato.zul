@@ -16,8 +16,8 @@
         ]]>
     </zscript>
     
-    <window title="Decanato" border="normal" width="800px" height="400px"  sclass="center top-space" 
-        apply="controlador.CDecanato">
+    <window title="Registro de Decanato" border="normal" width="800px" height="400px" 
+            sclass="center top-space" apply="controlador.CDecanato">
         <grid>
             <columns>
                 <column label="Campos" width="120px" />
@@ -26,11 +26,11 @@
             <rows>
                 <row>
                     Nombre:
-                    <textbox id="nombre" maxlength="60" cols="60" value="${deca[0].getNombre()}"/>
+                    <textbox id="nombre" maxlength="60" cols="40" value="${deca[0].getNombre()}"/>
                 </row>
                 <row>
                     Direccion:
-                    <textbox id="direccion" maxlength="60" cols="60" />
+                    <textbox id="direccion" maxlength="60" cols="40" multiline="true" />
                 </row>
             </rows>
         </grid>

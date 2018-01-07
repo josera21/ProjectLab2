@@ -3,11 +3,11 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Carrera" border="normal" width="800px" sclass="center top-space"
+    <window title="Registro de Carrera" border="normal" width="800px" sclass="center top-space"
             apply="controlador.CCarrera">
         <grid>
             <columns>
-                <column label="Campos" width="120px" />
+                <column label="Campos" width="160px" />
                 <column label="Contenido" />
             </columns>
             <rows>
@@ -21,11 +21,11 @@
                 </row>
                 <row>
                     Nombre: 
-                    <textbox id="nombre" maxlength="60" cols="60" />
+                    <textbox id="nombre" maxlength="60" cols="30" />
                 </row>
                 <row>
                     Direccion: 
-                    <textbox id="direccion" maxlength="60" cols="60" multiline="true" />
+                    <textbox id="direccion" maxlength="60" cols="30" multiline="true" />
                 </row>
             </rows>
         </grid>

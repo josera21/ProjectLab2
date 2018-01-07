@@ -72,6 +72,11 @@ public class Asistencia implements IAsistencia {
     }
 
     @Override
+    public Carrera buscarCarreraPorCodigo(int codigo) {
+        return (Carrera) hibernateDAO.findByKey(Carrera.class, codigo);
+    }
+
+    @Override
     public List buscarUsuariosTodos() {
         return hibernateDAO.loadAll(Usuario.class);
     }

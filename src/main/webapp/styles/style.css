@@ -27,6 +27,14 @@ body {
     padding: 10px;
 }
 
+.right {
+    position: absolute;
+    right: 0;
+    width: 300px;
+    border: 1.3px solid #4CAF50;
+    padding: 10px;
+}
+
 .top-space {
     margin-top: 1.2em;
 }

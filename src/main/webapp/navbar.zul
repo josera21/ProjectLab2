@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
+    <zscript src="/WEB-INF/scripts/script.zs" />
     <div sclass="bottom-space">
         <div align="center">
             <menubar id="menubar" >
                 <menuitem label="Homepage" href="/" ></menuitem>
-                <menu label="Institucion" >
+                <menu label="Institucion" if="${usuario.getRol() == 2}">
                     <menupopup>                                        
                         <menuitem label="Registrar Decanato" href="/vista/decanato.zul"/>
                         <menuitem label="Registrar Carrera" href="/vista/carrera.zul"/>
@@ -13,19 +14,22 @@
                     </menupopup>
 	    	</menu>
                         
-                <menu label="Servicios" >
+                <menu label="Servicios" if="${usuario != null}">
                     <menupopup>                                        
                         <menuitem label="Publicar articulos" href="/vista/articulo.zul" />
                         <menuitem label="Ver publicaciones" href="/vista/publicaciones.zul" />
                     </menupopup>
                 </menu>
            
-                <menu label="Usuarios" >
+                <menu label="Usuarios" if="${usuario.getRol() == 2}" >
                     <menupopup>
-                        <menuitem label="Registrar"  href="/vista/usuario.zul" />
+                        <menuitem label="Registrar" href="/vista/usuario.zul" />
                         <menuitem label="Ingresar"  href="/vista/ingresar.zul" />	    				
                     </menupopup>
                 </menu>
+                <menuitem sclass="right" if="${usuario != null}" 
+                          label="Logueado como ${usuario.getNombre()}">
+                </menuitem>
             </menubar>
         </div>
     </div>

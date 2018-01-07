@@ -7,11 +7,10 @@ package controlador;
 
 import asistencia.IAsistencia;
 import dto.Carrera;
-import dto.Decanato;
+import dto.Usuario;
 import helper.Validation;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Controller;
 import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -23,46 +22,56 @@ import org.zkoss.zul.Textbox;
  *
  * @author josera
  */
-@Controller
-public class CCarrera extends SelectorComposer {
+public class CUsuario extends SelectorComposer {
     ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
     private final IAsistencia asistencia = (IAsistencia) context.getBean("servicio");
-    
+
     @Wire
-    private Textbox codigo;
+    private Textbox cedula;
     @Wire
-    private Textbox codDecanato;
+    private Textbox rol;
+    @Wire
+    private Textbox codCarrera;
     @Wire
     private Textbox nombre;
     @Wire
-    private Textbox direccion;
-    
+    private Textbox apellido;
+    @Wire
+    private Textbox correo;
+    @Wire
+    private Textbox telefono;
+
     @Listen("onClick = #btnGuardar")
     public void grabar() throws Exception {
 
-        if (Validation.ValidarCamposVacios(codigo, codDecanato, nombre, direccion)) {
-            Messagebox.show("Hay campos vacios", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
+        if (Validation.ValidarCamposVacios(cedula, codCarrera, nombre, apellido, correo, telefono)) {
+            Messagebox.show("No puede haber campos vacios", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
             return;
         }
         
-        Carrera carrera = new Carrera();
+        Usuario estudiante = new Usuario();
         
-        carrera.setCodigo(Integer.parseInt(codigo.getText()));
-        carrera.setNombre(nombre.getText());
-        carrera.setDireccion(direccion.getText());
+        estudiante.setCedula(cedula.getText());
+        estudiante.setRol(Integer.parseInt(rol.getText()));
+        estudiante.setNombre(nombre.getText());
+        estudiante.setApellido(apellido.getText());
+        estudiante.setCorreo(correo.getText());
+        estudiante.setTelefono(telefono.getText());
         
-        Decanato decanato = asistencia.buscarDecanatoPorCodigo(Integer.parseInt(codDecanato.getText()));
-        carrera.setDecanato(decanato);
+        Carrera carrera = asistencia.buscarCarreraPorCodigo(Integer.parseInt(codCarrera.getText()));
+        estudiante.setCarrera(carrera);
 
-        asistencia.guardarCarrera(carrera);
+        asistencia.guardarUsuario(estudiante);
         
         Messagebox.show("Registro exitoso", "Information", Messagebox.OK, Messagebox.INFORMATION);
         
-        codigo.setText("");
-        codDecanato.setText("");
+        cedula.setText("");
+        codCarrera.setText("");
         nombre.setText("");
-        direccion.setText("");
+        apellido.setText("");
+        telefono.setText("");
+        correo.setText("");
 
-        throw new WrongValueException(nombre, "Guardado exitoso");
+        throw new WrongValueException(cedula, "Guardado exitoso");
     }
 }

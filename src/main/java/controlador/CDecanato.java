@@ -10,6 +10,7 @@ import asistencia.implementacion.Asistencia;
 import dao.HibernateDAO;
 import dao.IHibernateDAO;
 import dto.Decanato;
+import helper.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -24,6 +25,7 @@ import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
 /**
@@ -33,7 +35,7 @@ import org.zkoss.zul.Textbox;
 @Controller
 public class CDecanato extends SelectorComposer {
     ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
-    private IAsistencia asistencia = (IAsistencia) context.getBean("servicio");
+    private final IAsistencia asistencia = (IAsistencia) context.getBean("servicio");
     
     @Wire
     private Textbox nombre;
@@ -42,11 +44,10 @@ public class CDecanato extends SelectorComposer {
     
     @Listen("onClick = #btnGuardar")
     public void grabar() throws Exception {
-        String cadena;
-        cadena = nombre.getText().trim();
-
-        if(cadena.length() == 0) {
-            throw new WrongValueException(nombre, "Error validando Nombre");
+        
+        if(Validation.ValidarCamposVacios(nombre, direccion)) {
+            Messagebox.show("No puede haber campos vacios", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
+            return;
         }
 
         Decanato decanato = new Decanato();
@@ -54,6 +55,8 @@ public class CDecanato extends SelectorComposer {
         decanato.setNombre(nombre.getText());
         decanato.setDireccion(direccion.getText());
         asistencia.guardarDecanato(decanato);
+        
+        Messagebox.show("Registro exitoso", "Information", Messagebox.OK, Messagebox.INFORMATION);
         
         nombre.setText("");
         direccion.setText("");

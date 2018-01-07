@@ -27,6 +27,7 @@ public interface IAsistencia {
     // metodos de buscar
     public Usuario buscarUsuarioPorCedula(String cedula);
     public Decanato buscarDecanatoPorCodigo(int codigo);
+    public Carrera buscarCarreraPorCodigo(int codigo);
     public List buscarUsuariosTodos();
     public List listDecanatos();
     
