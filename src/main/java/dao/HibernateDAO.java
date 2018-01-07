@@ -24,6 +24,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -36,6 +38,7 @@ public class HibernateDAO implements IHibernateDAO {
   
   private Log log = LogFactory.getLog(HibernateDAO.class);
   
+  @Autowired
   SessionFactory sessionFactory;
   
 
@@ -135,7 +138,6 @@ public class HibernateDAO implements IHibernateDAO {
   public void delete(Object persistentObject) throws DAOException {
     try {
       getCurrentSession().delete(persistentObject);
-      getCurrentSession().getTransaction().commit();
     } catch (HibernateException ex) {
       this.log.error("Fail to delete", ex);
       throw new DAOException("Fail to delete", ex);
@@ -591,18 +593,15 @@ public class HibernateDAO implements IHibernateDAO {
   @Override
   public void saveOrUpdate(Object persistentObject) throws DAOException {
     try {
-    	getCurrentSession().beginTransaction();
-      getCurrentSession().setFlushMode(FlushMode.COMMIT);
-      getCurrentSession().saveOrUpdate(persistentObject);
-      getCurrentSession().getTransaction().commit();
+        getCurrentSession().setFlushMode(FlushMode.COMMIT);
+        getCurrentSession().saveOrUpdate(persistentObject);
     } catch (HibernateException ex) {
-      ex.printStackTrace();
-      this.log.error("Fail to save or update persistentObject", ex);
-      throw new DAOException("Fail to save or update persistentObject", 
-        ex);
+        ex.printStackTrace();
+        this.log.error("Fail to save or update persistentObject", ex);
+        throw new DAOException("Fail to save or update persistentObject", ex);
     }
     catch (IllegalStateException e) {
-      e.printStackTrace();
+        e.printStackTrace();
     }
   }
   
@@ -663,13 +662,11 @@ public class HibernateDAO implements IHibernateDAO {
   @Override
   public List loadAll(Class entityClass) throws DAOException {
     try {
-    	getCurrentSession().beginTransaction();
       return 
         getCurrentSession().createQuery("from " + entityClass.getName()).list();
-      
     } catch (HibernateException ex) {
-      this.log.error("Fail to load all ", ex);
-      throw new DAOException("Fail to load all", ex);
+        this.log.error("Fail to load all ", ex);
+        throw new DAOException("Fail to load all", ex);
     }
   }
   
@@ -725,13 +722,22 @@ public class HibernateDAO implements IHibernateDAO {
     return this.sessionFactory.getCurrentSession();
   }
   
+  @Transactional
   @Override
-  public void initialiceCollection(Set collections)
+  public void initialiceCollection1(Set collections)
+  {
+    collections.size();
+  }
+  
+  @Override
+  @Transactional
+  public void initialiceCollection(List collections)
   {
     Hibernate.initialize(collections);
   }
   
   @Override
+  @Transactional
   public void initialiceCollection(Object entity, Set collections)
   {
     if (getCurrentSession() != null) {
@@ -743,9 +749,18 @@ public class HibernateDAO implements IHibernateDAO {
 	        Hibernate.initialize(collections);
     	  }
       } catch (HibernateException e) {
-        this.log.error("Fail to flush session", e);
-        throw new DAOException("Fail to flush session", e);
-      }
+        try {
+            if (!Hibernate.isInitialized(collections))
+            {
+                getCurrentSession().merge(entity);
+                getCurrentSession().update(entity);
+                Hibernate.initialize(collections);
+            }
+          } catch (HibernateException ex) {
+                this.log.error("Fail to flush session1", ex);
+                throw new DAOException("Fail to flush session1", ex);
+            }
+        }
     }
   }
 

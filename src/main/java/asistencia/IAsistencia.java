@@ -17,14 +17,20 @@ import java.util.List;
  * @author josera
  */
 public interface IAsistencia {
+    // metodos de guardar 
     public void guardarUsuario(Usuario usuario) throws Exception;
     public void guardarArticulo(Articulo articulo) throws Exception;
     public void guardarCarrera(Carrera carrera) throws Exception;
     public void guardarDecanato(Decanato decanato) throws Exception;
     public void setHibernateDAO(IHibernateDAO hibernateDAO);
+
+    // metodos de buscar
     public Usuario buscarUsuarioPorCedula(String cedula);
+    public Decanato buscarDecanatoPorCodigo(int codigo);
     public List buscarUsuariosTodos();
     public List listDecanatos();
+    
+    // metodos de eliminar
     public void eliminarUsuario(Usuario usuario);
     public void eliminarDecanato(Decanato decanato);
 }

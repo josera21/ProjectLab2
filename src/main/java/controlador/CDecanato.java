@@ -6,41 +6,58 @@
 package controlador;
 
 import asistencia.IAsistencia;
+import asistencia.implementacion.Asistencia;
+import dao.HibernateDAO;
+import dao.IHibernateDAO;
 import dto.Decanato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.zkoss.zk.ui.WrongValueException;
+import org.zkoss.zk.ui.select.SelectorComposer;
+import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Textbox;
 
 /**
  *
  * @author josera
  */
 @Controller
-public class CDecanato {
-    private IAsistencia asistencia;
+public class CDecanato extends SelectorComposer {
+    ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
+    private IAsistencia asistencia = (IAsistencia) context.getBean("servicio");
     
-    @Autowired(required = true)
-    @Qualifier(value="asistencia")
-    public void setAsistencia(IAsistencia as) {
-        this.asistencia = as;
-    }
+    @Wire
+    private Textbox nombre;
+    @Wire
+    private Textbox direccion;
     
-    @RequestMapping(value = "/decanatos", method = RequestMethod.GET)
-    public String listPersons(Model model) {
-        model.addAttribute("decanato", new Decanato());
-        model.addAttribute("listDecanatos", this.asistencia.listDecanatos());
-        return "decanto";
-    }
-    
-    //For add and update decanato both
-    @RequestMapping(value= "/decanato/add", method = RequestMethod.POST)
-    public String addDecanato(@ModelAttribute("decanato") Decanato d) throws Exception{
-        this.asistencia.guardarDecanato(d);
-        return "redirect:/persons";
+    @Listen("onClick = #btnGuardar")
+    public void grabar() throws Exception {
+        String cadena;
+        cadena = nombre.getText().trim();
+
+        if(cadena.length() == 0) {
+            throw new WrongValueException(nombre, "Error validando Nombre");
+        }
+
+        Decanato decanato = new Decanato();
+
+        decanato.setNombre(nombre.getText());
+        decanato.setDireccion(direccion.getText());
+        asistencia.guardarDecanato(decanato);
+        
+        nombre.setText("");
+        direccion.setText("");
+
+        throw new WrongValueException(nombre, "Guardado exitoso");
     }
 }

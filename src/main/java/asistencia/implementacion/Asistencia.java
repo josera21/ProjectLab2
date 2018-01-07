@@ -25,6 +25,7 @@ public class Asistencia implements IAsistencia {
         return hibernateDAO;
     }
 
+    @Override
     public void setHibernateDAO(IHibernateDAO hibernateDAO) {
         this.hibernateDAO = hibernateDAO;
     }
@@ -66,6 +67,11 @@ public class Asistencia implements IAsistencia {
     }
 
     @Override
+    public Decanato buscarDecanatoPorCodigo(int codigo) {
+        return (Decanato) hibernateDAO.findByKey(Decanato.class, codigo);
+    }
+
+    @Override
     public List buscarUsuariosTodos() {
         return hibernateDAO.loadAll(Usuario.class);
     }
@@ -76,13 +82,11 @@ public class Asistencia implements IAsistencia {
     }
 
     @Override
-    @Transactional
     public void guardarDecanato(Decanato decanato) throws Exception {
         this.hibernateDAO.saveOrUpdate(decanato);
     }
 
     @Override
-    @Transactional
     public List listDecanatos() {
         return hibernateDAO.loadAll(Decanato.class);
     }

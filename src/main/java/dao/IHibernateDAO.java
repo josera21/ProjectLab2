@@ -21,7 +21,9 @@ public interface IHibernateDAO {
   public void setSessionFactory(SessionFactory sessionFactory);
   public abstract void refreshEntity(Object paramObject);
   
-  public abstract void initialiceCollection(Set paramSet);
+  public abstract void initialiceCollection1(Set paramSet);
+  
+  public void initialiceCollection(List collections);
   
   public abstract void initialiceCollection(Object paramObject, Set paramSet);
   

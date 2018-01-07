@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
 <?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Decanato" border="normal" width="800px" height="400px"  sclass="center top-space" >
+    <zscript>
+        <![CDATA[
+            List deca = new ArrayList();
+            void cargar() {
+                deca = servicio.listDecanatos();
+                //binder.loadAll();
+            }
+            cargar();
+        ]]>
+    </zscript>
+    
+    <window title="Decanato" border="normal" width="800px" height="400px"  sclass="center top-space" 
+        apply="controlador.CDecanato">
         <grid>
             <columns>
                 <column label="Campos" width="120px" />
@@ -12,7 +26,7 @@
             <rows>
                 <row>
                     Nombre:
-                    <textbox id="nombre" maxlength="60" cols="60"/>
+                    <textbox id="nombre" maxlength="60" cols="60" value="${deca[0].getNombre()}"/>
                 </row>
                 <row>
                     Direccion:
@@ -21,7 +35,7 @@
             </rows>
         </grid>
         <div sclass="top-space" >
-            <button label="Registrar" width="100px" height="40px" sclass="btn top-space" />
+            <button id="btnGuardar" label="Registrar" width="100px" height="40px" sclass="btn top-space" />
             <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey" />
         </div>
     </window>

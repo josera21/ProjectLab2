@@ -3,7 +3,8 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Carrera" border="normal" width="800px" sclass="center top-space">
+    <window title="Carrera" border="normal" width="800px" sclass="center top-space"
+            apply="controlador.CCarrera">
         <grid>
             <columns>
                 <column label="Campos" width="120px" />
@@ -15,17 +16,22 @@
                     <textbox id="codigo" maxlength="10" cols="12" />
                 </row>
                 <row>
+                    Codigo Decanato
+                    <textbox id="codDecanato" maxlength="10" cols="12"/>
+                </row>
+                <row>
                     Nombre: 
                     <textbox id="nombre" maxlength="60" cols="60" />
                 </row>
                 <row>
                     Direccion: 
-                    <textbox id="direccion" maxlength="60" cols="60" />
+                    <textbox id="direccion" maxlength="60" cols="60" multiline="true" />
                 </row>
             </rows>
         </grid>
         <div sclass="top-space" >
-            <button label="Registrar" width="100px" height="40px" sclass="btn top-space" />
+            <button label="Registrar" id="btnGuardar" width="100px" height="40px" 
+                    sclass="btn top-space" />
             <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey" />
         </div>
     </window>

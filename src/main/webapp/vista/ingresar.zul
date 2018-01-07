@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+<!-- Añadido -->
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<!-- Añadido -->
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
+    <zscript src="/WEB-INF/scripts/script.zs" />
+    
     <window title="Iniciar Sesion" sclass="center top-space" border="normal"
             width="400px">       
         <grid>
@@ -12,19 +18,57 @@
             </columns>
              <rows>
                <row>  
-                    Usuario:
-                    <textbox id="rif" maxlength="16" cols="16"/>
+                    Cedula:
+                    <textbox id="cedula" maxlength="16" cols="16"/>
                 </row>	
 
                 <row>
                    Contraseña: 
                    <textbox type="password" id="password" maxlength="16" cols="16"/>
+                   <attribute name="onOK">
+                        <![CDATA[
+                            try {
+                                dto.Usuario usuario = new dto.Usuario();
+                                obeCtx.setUsuarioActual(usuario);
+                                //Executions.getCurrent().sendRedirect("/index.zul","_blank");
+                                Executions.sendRedirect("../index.zul");
+                            } catch (Exception obeex) {
+                                Messagebox.show("Usuario y Password no Coinciden", "Error", Messagebox.OK, Messagebox.ERROR);
+                            }
+                        ]]>
+                    </attribute>
                 </row>
             </rows>    
         </grid>
         <div sclass="top-space" >
-            <button  sclass="btn" id="login" label="Ingresar" width="100px" height="40px"/>
-            <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey" />
+            <button  sclass="btn" id="login" label="Ingresar" width="100px" height="40px" if="${usuario == null}">
+                <attribute name="onClick">
+                    <![CDATA[
+                        try {
+                            dto.Usuario usuario = new dto.Usuario();
+                            obeCtx.setUsuarioActual(usuario);
+                            //Executions.getCurrent().sendRedirect("/index.zul","_blank");
+                            Executions.sendRedirect("/index.zul");
+                        } catch (Exception obeex) {
+                            Messagebox.show("Usuario y Password no Coinciden", "Error", Messagebox.OK, Messagebox.ERROR);
+                        }
+                    ]]>						
+                </attribute>
+            </button>
+            
+            <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey"
+            if="${usuario != null}"    />
+            
+            <button  sclass="btn" id="logout" label="Salir" width="100px" height="40px" if="${usuario != null}">
+                <attribute name="onClick">
+                    <![CDATA[
+                        {
+                            session.invalidate();
+                            Executions.sendRedirect("/index.zul");
+                        }
+                    ]]>
+                </attribute>
+            </button>
         </div>
     </window>   
 </zk>

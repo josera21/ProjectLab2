@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
 <?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
 <?link rel="stylesheet" type="text/css" href="/styles/header.css"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-
+    <zscript src="/WEB-INF/scripts/script.zs" />
+    <zscript>
+        <![CDATA[
+            List users = new ArrayList();
+            void cargar() {
+                users = servicio.buscarUsuariosTodos();
+                //binder.loadAll();
+            }
+            cargar();
+        ]]>
+    </zscript>
+    
     <div>
         <borderlayout sclass="complex-layout" height="720px">
             <!-- Header -->
             <?init class="org.zkoss.zk.ui.util.Composition" arg0="header.zul"?>
             <!-- Sidebar -->
-            <west width="200px" border="0" flex="true" splittable="true"
+            <west width="200px" border="0" flex="true" splittable="true" if="${usuario != null}"
                 margins="0,5,0,0">
                 <vlayout spacing="0">
                     <panel width="100%" border="normal"
@@ -29,7 +42,7 @@
             <!-- Content -->
             <center>
                 <borderlayout sclass="inner-border">
-                    <north border="0" height="4%" margins="2,3,0,0">
+                    <north border="0" height="8%" margins="2,3,0,0">
                         <label value="HOME" style="font-size:20px;" />
                     </north>
                     <center border="0" margins="0,3,3,3">
@@ -76,7 +89,7 @@
                     <east>
                         <vlayout spacing="10px">
                             <panel width="100%" border="normal"
-                                title="Porque UCLA-SEEKER? ">
+                                title="¿Porque UCLA-SEEKER? ">
                                 <panelchildren>
                                     <html>
                                         <![CDATA[ <ul> <li>Productividad</li>
@@ -85,10 +98,53 @@
                                     </html>
                                 </panelchildren>
                             </panel>
-                            <panel width="100%" border="normal" title="Iniciar Sesion">
+                            <panel width="100%" border="normal" title="Iniciar Sesion"
+                                if="${usuario == null}" >
+                                <panelchildren>
+                                    <toolbar mold="panel">
+                                        <label value="Cedula"></label>
+                                    </toolbar>
+                                    <toolbar mold="panel" align="center">
+                                        
+                                        <textbox id="cedula" maxlength="16" cols="16"/>
+                                    </toolbar>
+                                    <toolbar mold="panel">
+                                        <label value="Contraseña"></label>
+                                    </toolbar>
+                                    <toolbar mold="panel" align="center">
+                                        <textbox type="password" id="password" maxlength="16" cols="16"/>
+                                    </toolbar>
+                                    <toolbar mold="panel" align="center">
+                                        <toolbarbutton label="Ingresar" >
+                                            <attribute name="onClick">
+                                                <![CDATA[
+                                                    try {
+                                                        dto.Usuario usuario = new dto.Usuario();
+                                                        obeCtx.setUsuarioActual(usuario);
+                                                        Executions.sendRedirect("/index.zul");
+                                                    } catch (Exception obeex) {
+                                                        Messagebox.show("Usuario y Password no Coinciden " + users[0].getNombre(), "Error", Messagebox.OK, Messagebox.ERROR);
+                                                    }
+                                                ]]>						
+                                            </attribute>
+                                        </toolbarbutton>
+                                    </toolbar>
+                                </panelchildren>
+                            </panel>
+                            <panel width="100%" border="normal" title="¿Quieres salir?"
+                                if="${usuario != null}" >
                                 <panelchildren>
                                     <toolbar mold="panel" align="center">
-                                        <toolbarbutton label="Ingresar" href="vista/ingresar.zul" ></toolbarbutton>
+                                        <toolbarbutton sclass="btn" label="Cerrar sesion" >
+                                            <attribute name="onClick">
+                                                <![CDATA[
+                                                    {
+                                                        session.invalidate();
+                                                        Executions.sendRedirect("/index.zul");
+                                                    }
+                                                ]]>
+                                            </attribute>
+                                        </toolbarbutton>
                                     </toolbar>
                                 </panelchildren>
                             </panel>

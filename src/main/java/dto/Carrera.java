@@ -25,7 +25,8 @@ public class Carrera {
     private Decanato decanato;
     
     private String nombre;
-
+    private String direccion;
+    
     /**
      * @return the codigo
      */
@@ -66,6 +67,20 @@ public class Carrera {
      */
     public void setDecanato(Decanato decanato) {
         this.decanato = decanato;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
     
     

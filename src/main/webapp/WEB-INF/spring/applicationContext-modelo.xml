@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- Archivos de Configuracion de Conexion a la Base de Datos y del Sistema de Gestion de Documentos 
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+                    <list>
+                        <value>classpath:jdbc.properties</value>
+                    </list>
+		</property>
+	</bean>
+        -->
+        
+	<!-- DataSource de Conexion -->
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>jdbc:mysql://localhost/test</value>
+		</property>
+		<property name="user">
+			<value></value>
+		</property>
+		<property name="password">
+			<value></value>
+		</property>
+		<property name="minPoolSize" value="15" />
+		<property name="maxPoolSize" value="200" />
+		<property name="maxStatements" value="100" />
+		<property name="checkoutTimeout" value="3000" />
+		<property name="idleConnectionTestPeriod" value="60" />
+	</bean>
+
+
+		<!-- Clase Wrapper de Hibernate para conexion a la Base de Datos -->
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+            <property name="dataSource">
+                    <ref bean="dataSource" />
+            </property>
+            <property name="packagesToScan">
+                <list>
+                    <value>dto</value>
+                </list>
+            </property>
+            <property name="hibernateProperties">
+                <props>
+                    <prop key="hibernate.dialect">
+                            org.hibernate.dialect.MySQL5Dialect
+                    </prop>
+                    <prop key="hibernate.jdbc.use_streams_for_binary">
+                            true
+                    </prop>
+                    
+                    <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+                    
+                    <prop key="hibernate.event.merge.entity_copy_observer">allow</prop>
+                    <prop key="hibernate.show_sql">true</prop>
+                    
+                    
+                    
+                    <prop key="hibernate.c3p0.minPoolSize">10</prop>
+                    <prop key="hibernate.c3p0.maxPoolSize">20</prop>
+                    <prop key="hibernate.c3p0.acquire_increment">1</prop>
+                    <prop key="hibernatex.c3p0.timeout">600</prop>
+                    <prop key="hibernate.c3p0.max_statement">150</prop>
+                    <prop key="hibernate.hbm2ddl.auto">update</prop>
+                    <prop key="hibernate.c3p0.statementCacheNumDeferredCloseThreads">1</prop> 
+                    <prop key="hibernate.c3p0.testConnectionOnCheckout">
+                            false
+                    </prop>
+                    <prop key="hibernate.cache.provider_class">
+                            org.hibernate.cache.EhCacheProvider
+                    </prop>
+                    
+                    <prop key="hibernate.cache.use_query_cache">true</prop>
+                    <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                        <!-- <prop key="net.sf.ehcache.configurationResourceName">/cache-config.xml</prop> -->
+                    
+                    <prop key="hibernate.cache.use_second_level_cache">
+                            true
+                    </prop>
+
+                </props>
+            </property>
+	</bean>
+	
+        <!-- TransactionManager para Hibernate -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!--  Interceptor para las Transacciones -->
+	<bean id="txInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+				<prop key="validar*">
+					PROPAGATION_REQUIRED,readOnly
+				</prop>
+				<prop key="buscar*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="refrescar*">
+					PROPAGATION_REQUIRED,readOnly
+				</prop>
+				<prop key="obtener*">
+					PROPAGATION_REQUIRED,readOnly
+				</prop>
+				<prop key="construirArbol*">
+					PROPAGATION_REQUIRED,readOnly
+				</prop>
+			</props>
+		</property>
+	</bean>
+</beans>
