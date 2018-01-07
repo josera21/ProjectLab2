@@ -32,7 +32,8 @@
                                 <toolbarbutton label="Inicio" href="index.zul"/>
                                 <toolbarbutton label="Decanatos" href="vista/decanato.zul"/>
                                 <toolbarbutton label="Carreras" href="vista/carrera.zul"/>
-                                <toolbarbutton label="Publicaciones" href="vista/articulo.zul" />
+                                <toolbarbutton label="Publicar" href="vista/articulo.zul"/>
+                                <toolbarbutton label="Publicaciones" href="vista/publicaciones.zul" />
                             </vbox>
                         </panelchildren>
                     </panel>
@@ -145,6 +146,13 @@
                                                 ]]>
                                             </attribute>
                                         </toolbarbutton>
+                                    </toolbar>
+                                </panelchildren>
+                            </panel>
+                            <panel width="100%" border="normal" title="No tienes cuenta ?">
+                                <panelchildren>
+                                    <toolbar mold="panel" align="center">
+                                        <toolbarbutton label="Registrarse" href="vista/usuario.zul"></toolbarbutton>
                                     </toolbar>
                                 </panelchildren>
                             </panel>

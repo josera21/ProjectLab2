@@ -4,6 +4,7 @@
     <div sclass="bottom-space">
         <div align="center">
             <menubar id="menubar" >
+                <menuitem label="Homepage" href="/" ></menuitem>
                 <menu label="Institucion" >
                     <menupopup>                                        
                         <menuitem label="Registrar Decanato" href="/vista/decanato.zul"/>
@@ -14,8 +15,8 @@
                         
                 <menu label="Servicios" >
                     <menupopup>                                        
-                        <menuitem label="Publicar articulos" href="/vista/articulo.zul" />                                  
-                        <menuseparator/>
+                        <menuitem label="Publicar articulos" href="/vista/articulo.zul" />
+                        <menuitem label="Ver publicaciones" href="/vista/publicaciones.zul" />
                     </menupopup>
                 </menu>
            

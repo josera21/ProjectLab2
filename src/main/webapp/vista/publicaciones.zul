@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+
+    <window id="publicaciones" title="Busqueda de Publicaciones" width="800px" 
+            height="400px"  sclass="center top-space" border="normal">
+        <zscript>
+           
+        </zscript>
+        <hbox align="center">
+            Palabra de Busqueda:
+            <textbox id="keywordBox" />
+            <button id="btnBuscar" label="Search" image="/img/buscar.png" >
+                <attribute name="onClick">
+                        
+                </attribute>
+            </button>
+        </hbox>
+        
+        <listbox id="box" height="160px" sclass="top-space" emptyMessage="No Hay Publicaciones con Dicho Criterio">
+            <attribute name="onSelect">
+                
+            </attribute>
+            <listhead>
+                <listheader label="Nombre" />
+                <listheader label="Descripcion" />
+                <listheader label="Estado" />
+                <listheader label="$ Precio" width="20%"/>
+            </listhead>
+	    <listitem sclass="row-border item" value="">
+                <listcell label="Calculadora fx350"/>
+                <listcell label="Excelente calculadora para calculos"/>
+                <listcell label="Intercambio"/>
+                <listcell label="250.000"/>
+	    </listitem>
+	</listbox>
+	<hbox style="margin-top:20px">
+            <image id="previewImage" width="250px" />
+            <vbox>
+                <label id="modelLabel" value=""/>
+                <label id="makeLabel"  value=""/>
+                <label id="priceLabel"  value=""/>
+                <label id="descriptionLabel"  value=""/>
+            </vbox>
+	</hbox>
+    </window>
+    
+</zk>
