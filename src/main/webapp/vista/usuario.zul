@@ -5,54 +5,60 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window title="Registro de usuario" border="normal" width="600px" sclass="center top-space"
             apply="controlador.CUsuario">
-        <grid>
-            <columns>
-                <column label="Campos" width="160px" />
-                <column label="Contenido" />
-            </columns>
-            <rows>
-                <row>
-                    Cedula:
-                    <cell>
-                        <intbox id="cedula" maxlength="8" cols="12" />
-                    </cell>
-                </row>
-                <row if="${usuario.getRol() == 2}">
-                    Rol:
-                    <textbox visible="true" id="rol" maxlength="10" cols="12" />
-                </row>
-                <row>
-                    Codigo Carrera:
-                    <cell>
-                        <intbox id="codCarrera" maxlength="8" cols="12" />
-                    </cell>
-                </row>
-                <row>
-                    Nombre:
-                    <textbox id="nombre" maxlength="30" cols="30" />
-                </row>
-                <row>
-                    Apellido:
-                    <textbox id="apellido" maxlength="40" cols="30" />
-                </row>
-                <row>
-                    Correo:
-                    <textbox id="correo" maxlength="50" cols="30" />
-                </row>
-                <row>
-                    Telefono:
-                    <textbox id="telefono" maxlength="15" cols="30" />
-                </row>
-                <!-- Necesario para que al crear un usuario regular, no de error de apuntador nulo -->
-                <row if="${usuario == null}">
-                    <label value="Rol:" visible="false" ></label>
-                    <textbox visible="false" id="rol" maxlength="10" cols="12" />
-                </row>
-            </rows>
-        </grid>
-        <div sclass="top-space" >
-            <button label="Registrar" id="btnGuardar" width="100px" height="40px" sclass="btn top-space" />
-            <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey" />
+        <div apply="org.zkoss.bind.BindComposer" viewModel="@id('modelo')
+                @init('controlador.CUsuario')" >
+            <grid>
+                <columns>
+                    <column label="Campos" width="160px" />
+                    <column label="Contenido" />
+                </columns>
+                <rows>
+                    <row>
+                        Cedula:
+                        <cell>
+                            <intbox id="cedula" maxlength="8" cols="12" />
+                        </cell>
+                    </row>
+                    <row if="${usuario.getRol() == 2}">
+                        Rol:
+                        <textbox visible="true" id="rol" maxlength="10" cols="12" />
+                    </row>
+                    <row>
+                        Carrera:
+                        <combobox readonly="true" autodrop="true" id="cmbCarr" apply="controlador.CUsuario">
+                            <template name="model">
+                                <comboitem width="300px" label="${each.nombre}" value="${each.codigo}" />
+                            </template>
+                        </combobox>
+                    </row>
+                    <row>
+                        Nombre:
+                        <textbox id="nombre" maxlength="30" cols="30" />
+                    </row>
+                    <row>
+                        Apellido:
+                        <textbox id="apellido" maxlength="40" cols="30" />
+                    </row>
+                    <row>
+                        Correo:
+                        <textbox id="correo" maxlength="50" cols="30" />
+                    </row>
+                    <row>
+                        Telefono:
+                        <textbox id="telefono" maxlength="15" cols="30" />
+                    </row>
+                    <!-- Necesario para que al crear un usuario regular, no de error de apuntador nulo -->
+                    <row if="${usuario == null}">
+                        <label value="Rol:" visible="false" ></label>
+                        <textbox visible="false" id="rol" maxlength="10" cols="12" />
+                    </row>
+                </rows>
+            </grid>
+            <div sclass="top-space" >
+                <button label="Registrar" id="btnGuardar" width="100px" height="40px" sclass="btn top-space" />
+                <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey" />
+            </div>
         </div>
+        
     </window>
 </zk>

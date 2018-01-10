@@ -31,6 +31,7 @@ public interface IAsistencia {
     public Carrera buscarCarreraPorCodigo(int codigo);
     public List buscarUsuariosTodos();
     public List listDecanatos();
+    public List listCarreras();
     public List buscarArticulosTodos();
     
     // metodos de eliminar

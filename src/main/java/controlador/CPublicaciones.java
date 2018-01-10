@@ -75,9 +75,10 @@ public class CPublicaciones extends SelectorComposer {
         if (keyword != null && !keyword.trim().equals("")) {
             artFounds.clear();
             for (Articulo art : articulos) {
-                if (art.getNombre().toLowerCase().contains(
+                if ((art.getNombre().toLowerCase().contains(
                         keyword.trim().toLowerCase()) ||
-                        art.getEstado().toLowerCase().contains(keyword.trim().toLowerCase()))
+                        art.getEstado().toLowerCase().contains(keyword.trim().toLowerCase())) && 
+                        (!art.getEstado().toLowerCase().contains("no disponible")))
                 {
                     artFounds.add(art);
                 }
@@ -121,8 +122,17 @@ public class CPublicaciones extends SelectorComposer {
     }
     
     @Listen("onClick = #btnContact")
-    public void showOwnerCed() {
-        Messagebox.show("Cedula del propietario: " + cedPropietario, "Contactar", Messagebox.OK, Messagebox.INFORMATION);
+    public void showOwnerCed() throws Exception {
+        if(Messagebox.show("Estas seguro de continuar ?", "Contactar", 
+                Messagebox.OK + Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+            
+            Articulo artSelec =  (Articulo)((Listitem) box.getSelectedItem()).getValue();
+            artSelec.setEstado("No disponible");
+            // Actualizo el estado del articulo
+            asistencia.guardarArticulo(artSelec);
+            Messagebox.show("Listo! Notificaremos al Propietario", "Contactar",
+                    Messagebox.OK, Messagebox.INFORMATION);
+        }
     }
     
     @Listen("onClick = #btnLimpiar")

@@ -26,7 +26,7 @@
                 </row>
                 <row>
                     <label value="Tipo" />
-                    <combobox id="cmbEstado" width="280px">
+                    <combobox readonly="true" id="cmbEstado" width="280px">
                         <comboitem label="Venta" />
                         <comboitem label="Objeto Perdido"/>
                         <comboitem label="Intercambio" />

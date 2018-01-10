@@ -103,6 +103,12 @@ public class Asistencia implements IAsistencia {
     }
 
     @Override
+    public List listCarreras() {
+        return hibernateDAO.loadAll(Carrera.class);
+    }
+
+    
+    @Override
     public void eliminarDecanato(Decanato decanato) {
         hibernateDAO.delete(decanato);
     }

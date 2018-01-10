@@ -16,8 +16,12 @@
                     <textbox id="codigo" maxlength="10" cols="12" />
                 </row>
                 <row>
-                    Codigo Decanato
-                    <textbox id="codDecanato" maxlength="10" cols="12"/>
+                    Decanato:
+                    <combobox readonly="true" autodrop="true" id="cmbDeca" apply="controlador.CCarrera">
+                        <template name="model">
+                            <comboitem width="300px" label="${each.nombre}" value="${each.codigo}" />
+                        </template>
+                    </combobox>
                 </row>
                 <row>
                     Nombre: 

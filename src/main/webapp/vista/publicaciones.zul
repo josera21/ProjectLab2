@@ -29,7 +29,7 @@
                         <listcell label="${each.nombre}"/>
                         <listcell label="${each.descripcion}"/>
                         <listcell label="${each.estado}"/>
-                        <listcell label="${each.monto}"/>
+                        <listcell style="color: #43A047" label="${each.monto}"/>
                     </listitem>
                 </template>
             </listbox>
@@ -44,7 +44,7 @@
                     </hbox>
                     <hbox>
                         <label value="Precio:" />
-                        <label id="montoLabel"/>
+                        <label style="color: #43A047" id="montoLabel"/>
                     </hbox>
                     <label value="Propietario" sclass="f-underline" />
                     <hbox>
@@ -52,8 +52,14 @@
                         <label id="apeLabel" />
                     </hbox>
                     <label value="Estudios" sclass="f-underline" />
-                    <label id="carrLabel" />
-                    <label id="carrDirLabel" />
+                    <hbox>
+                        <label value="Carrera:" />
+                        <label id="carrLabel" />
+                    </hbox>
+                    <hbox>
+                        <label value="Direccion:" />
+                        <label id="carrDirLabel" />
+                    </hbox>
                     <hbox>
                         <label value="Telefono:" sclass="f-underline" />
                         <label id="phoneLabel" />
