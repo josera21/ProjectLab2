@@ -13,15 +13,19 @@
             <rows>
                 <row>
                     Cedula:
-                    <textbox id="cedula" maxlength="10" cols="12" />
+                    <cell>
+                        <intbox id="cedula" maxlength="8" cols="12" />
+                    </cell>
                 </row>
                 <row if="${usuario.getRol() == 2}">
                     Rol:
-                    <textbox id="rol" maxlength="10" cols="12" />
+                    <textbox visible="true" id="rol" maxlength="10" cols="12" />
                 </row>
                 <row>
                     Codigo Carrera:
-                    <textbox id="codCarrera" maxlength="10" cols="12" />
+                    <cell>
+                        <intbox id="codCarrera" maxlength="8" cols="12" />
+                    </cell>
                 </row>
                 <row>
                     Nombre:
@@ -38,6 +42,11 @@
                 <row>
                     Telefono:
                     <textbox id="telefono" maxlength="15" cols="30" />
+                </row>
+                <!-- Necesario para que al crear un usuario regular, no de error de apuntador nulo -->
+                <row if="${usuario == null}">
+                    <label value="Rol:" visible="false" ></label>
+                    <textbox visible="false" id="rol" maxlength="10" cols="12" />
                 </row>
             </rows>
         </grid>

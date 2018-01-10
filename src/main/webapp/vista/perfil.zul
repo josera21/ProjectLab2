@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window id="perfil" title="Mi Perfil" border="normal" width="600px" sclass="center top-space"
+            apply="controlador.CUsuario">
+        <grid>
+            <columns>
+                <column label="Campos" width="160px" />
+                <column label="Contenido" />
+            </columns>
+            <rows>
+                <row>
+                    Cedula:
+                    <cell>
+                        <intbox disabled="true" value="${usuario.getCedula()}" id="cedula" maxlength="8" cols="12" />
+                        <button sclass="btn-pink" style="margin-left: 0.5em" label="Cargar" id="btnLoad" />
+                    </cell>
+                </row>
+                <row>
+                    Nombre:
+                    <textbox disabled="true" id="nombre" maxlength="30" cols="30" />
+                </row>
+                <row>
+                    Apellido:
+                    <textbox disabled="true" id="apellido" maxlength="40" cols="30" />
+                </row>
+                <row>
+                    Correo:
+                    <textbox disabled="true" id="correo" maxlength="50" cols="30" />
+                </row>
+                <row>
+                    Telefono:
+                    <textbox disabled="true" id="telefono" maxlength="15" cols="30" />
+                </row>
+            </rows>
+        </grid>
+        <div sclass="top-space" >
+            <button label="Actualizar" id="btnActualizar" height="40px" sclass="btn top-space" />
+            <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey" />
+        </div>
+    </window>
+</zk>

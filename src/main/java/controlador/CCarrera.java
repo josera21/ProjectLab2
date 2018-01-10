@@ -52,8 +52,12 @@ public class CCarrera extends SelectorComposer {
         carrera.setDireccion(direccion.getText());
         
         Decanato decanato = asistencia.buscarDecanatoPorCodigo(Integer.parseInt(codDecanato.getText()));
+        if(decanato == null) {
+            Messagebox.show("Decanato no encontrado", "Error", Messagebox.OK, Messagebox.ERROR);
+            return;
+        }
+        
         carrera.setDecanato(decanato);
-
         asistencia.guardarCarrera(carrera);
         
         Messagebox.show("Registro exitoso", "Information", Messagebox.OK, Messagebox.INFORMATION);

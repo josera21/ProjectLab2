@@ -8,6 +8,7 @@ package dto;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -18,48 +19,18 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity
 public class Servicio implements Serializable{
+    
     @Id
-    private String usuariocedula;
-    @Id
-    private String articulocodigo;
+    @GeneratedValue
+    private int id;
     
     @ManyToOne(fetch=FetchType.EAGER)
-    @PrimaryKeyJoinColumn(name="usuariocedula", referencedColumnName="cedula")
     private Usuario usuario;
     
     @ManyToOne(fetch=FetchType.EAGER)
-    @PrimaryKeyJoinColumn(name="articulocodigo", referencedColumnName="codigo")
     private Articulo articulo;
     
     private String tipoServicio;
-
-    /**
-     * @return the usuariocedula
-     */
-    public String getUsuariocedula() {
-        return usuariocedula;
-    }
-
-    /**
-     * @param usuariocedula the usuariocedula to set
-     */
-    public void setUsuariocedula(String usuariocedula) {
-        this.usuariocedula = usuariocedula;
-    }
-
-    /**
-     * @return the articulocodigo
-     */
-    public String getArticulocodigo() {
-        return articulocodigo;
-    }
-
-    /**
-     * @param articulocodigo the articulocodigo to set
-     */
-    public void setArticulocodigo(String articulocodigo) {
-        this.articulocodigo = articulocodigo;
-    }
 
     /**
      * @return the usuario
@@ -101,5 +72,19 @@ public class Servicio implements Serializable{
      */
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }

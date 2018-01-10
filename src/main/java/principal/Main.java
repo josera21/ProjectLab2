@@ -84,10 +84,8 @@ public class Main {
             servicio.setTipoServicio("Venta");
             servicio.setArticulo(articulo);
             servicio.setUsuario(estudiante);
-            servicio.setArticulocodigo(Integer.toString(articulo.getCodigo()));
-            servicio.setUsuariocedula(estudiante.getCedula());
             
-            articulo.getServicios().add(servicio);
+            articulo.setUsuario(estudiante);
             // Guardo el Articulo
             asistencia.guardarArticulo(articulo);
                     

@@ -33,8 +33,9 @@ public class Articulo {
     @JoinColumn(name="tipoArticulo")
     private TipoArticulo tipoArticulo;
     
-    @OneToMany(fetch=FetchType.LAZY, cascade={javax.persistence.CascadeType.ALL})
-    private Set<Servicio> servicios = new HashSet();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="ced_usuario")
+    private Usuario usuario;
 
     /**
      * @return the codigo
@@ -121,17 +122,16 @@ public class Articulo {
     }
 
     /**
-     * @return the servicios
+     * @return the usuario
      */
-    public Set<Servicio> getServicios() {
-        return servicios;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     /**
-     * @param servicios the servicios to set
+     * @param usuario the usuario to set
      */
-    public void setServicios(Set<Servicio> servicios) {
-        this.servicios = servicios;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
-    
 }

@@ -12,6 +12,7 @@ import asistencia.IAsistencia;
 import dto.Articulo;
 import dto.Carrera;
 import dto.Decanato;
+import java.util.ArrayList;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -45,8 +46,8 @@ public class Asistencia implements IAsistencia {
     
     @Override
     public void guardarArticulo(Articulo articulo) throws Exception {
-        if(articulo.getServicios().isEmpty()) {
-            throw new Exception("Debe agregar la informacion del servicio primero.");
+        if(articulo.getUsuario() == null) {
+            throw new Exception("El Articulo debe pertenecer a un usuario.");
         }
         hibernateDAO.saveOrUpdate(articulo);
     }
@@ -81,6 +82,11 @@ public class Asistencia implements IAsistencia {
         return hibernateDAO.loadAll(Usuario.class);
     }
 
+    @Override
+    public List buscarArticulosTodos() {
+        return hibernateDAO.loadAll(Articulo.class);
+    }
+    
     @Override
     public void eliminarUsuario(Usuario usuario) {
         hibernateDAO.delete(usuario);

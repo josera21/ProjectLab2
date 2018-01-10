@@ -3,7 +3,9 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Articulo" border="normal" sclass="center top-space" width="800px">
+    <zscript src="/WEB-INF/scripts/script.zs" />
+    <window title="Publicacion de Articulo" border="normal" sclass="center top-space" 
+            width="800px" apply="controlador.CArticulo" if="${usuario != null}" >
         <grid>
             <columns>
                 <column label="Campos" width="120px" />
@@ -11,8 +13,11 @@
             </columns>
             <rows>
                 <row>
-                    Nombre:
-                    <textbox id="nombre" maxlength="60" cols="60" />
+                    <textbox id="userCed" value="${usuario.getCedula()}" visible="false"/>
+                </row>
+                <row>
+                    Titulo:
+                    <textbox id="nombre" maxlength="60" cols="30" />
                 </row>
                 <row>
                     Descripcion:
@@ -20,7 +25,7 @@
                 height="100px" />
                 </row>
                 <row>
-                    <label value="Estado" />
+                    <label value="Tipo" />
                     <combobox id="cmbEstado" width="280px">
                         <comboitem label="Venta" />
                         <comboitem label="Objeto Perdido"/>
@@ -29,13 +34,28 @@
                 </row>
                 <row>
                     Monto $:
-                    <textbox id="monto" maxlength="30" cols="30" />
+                    <cell>
+                        <decimalbox value="0" id="monto" format="###.##" width="280px" tabindex="6" />
+                    </cell>
                 </row>
             </rows>
         </grid>
         <div sclass="top-space" >
-            <button label="Registrar" width="100px" height="40px" sclass="btn top-space" />
+            <button id="btnGuardar" label="Registrar" width="100px" height="40px" sclass="btn top-space" />
             <button label="Volver" href="../index.zul" width="100px" height="40px" sclass="btn btn-grey" />
         </div>
+    </window>
+    <window title="Informacion" if="${usuario == null}" width="30%" height="35%"
+            sclass="center" border="normal">
+        <grid>
+            <rows>
+                <row>
+                    <label value="Debe iniciar sesion para publicar articulos" ></label>
+                </row>
+                <row>
+                    <button sclass="btn top-space" href="ingresar.zul" >Iniciar Sesion</button>
+                </row>
+            </rows>
+        </grid>
     </window>
 </zk>

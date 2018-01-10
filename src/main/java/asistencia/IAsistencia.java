@@ -10,6 +10,7 @@ import dto.Articulo;
 import dto.Carrera;
 import dto.Decanato;
 import dto.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +31,7 @@ public interface IAsistencia {
     public Carrera buscarCarreraPorCodigo(int codigo);
     public List buscarUsuariosTodos();
     public List listDecanatos();
+    public List buscarArticulosTodos();
     
     // metodos de eliminar
     public void eliminarUsuario(Usuario usuario);

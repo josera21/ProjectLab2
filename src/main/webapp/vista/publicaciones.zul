@@ -1,50 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-
-    <window id="publicaciones" title="Busqueda de Publicaciones" width="800px" 
-            height="400px"  sclass="center top-space" border="normal">
-        <zscript>
-           
-        </zscript>
-        <hbox align="center">
-            Palabra de Busqueda:
-            <textbox id="keywordBox" />
-            <button id="btnBuscar" label="Search" image="/img/buscar.png" >
-                <attribute name="onClick">
-                        
-                </attribute>
-            </button>
-        </hbox>
-        
-        <listbox id="box" height="160px" sclass="top-space" emptyMessage="No Hay Publicaciones con Dicho Criterio">
-            <attribute name="onSelect">
-                
-            </attribute>
-            <listhead>
-                <listheader label="Nombre" />
-                <listheader label="Descripcion" />
-                <listheader label="Estado" />
-                <listheader label="$ Precio" width="20%"/>
-            </listhead>
-	    <listitem sclass="row-border item" value="">
-                <listcell label="Calculadora fx350"/>
-                <listcell label="Excelente calculadora para calculos"/>
-                <listcell label="Intercambio"/>
-                <listcell label="250.000"/>
-	    </listitem>
-	</listbox>
-	<hbox style="margin-top:20px">
-            <image id="previewImage" width="250px" />
-            <vbox>
-                <label id="modelLabel" value=""/>
-                <label id="makeLabel"  value=""/>
-                <label id="priceLabel"  value=""/>
-                <label id="descriptionLabel"  value=""/>
-            </vbox>
-	</hbox>
-    </window>
     
+    <window id="publicaciones" title="Publicaciones" width="800px" 
+            sclass="center top-space" border="normal" apply="controlador.CPublicaciones" >
+        
+        <div>
+            <hbox align="center">
+                <textbox id="keywordBox" placeholder="Escribe algo..." />
+                <button id="btnBuscar" label="Buscar" image="/img/buscar.png" />
+                <button id="btnLimpiar" sclass="btn-grey" label="Limpiar" image="/img/remover.png" />
+            </hbox>
+
+            <listbox id="box" height="300px" sclass="top-space bottom-space" 
+                     emptyMessage="No Hay Publicaciones con Dicho Criterio">
+                <listhead>
+                    <listheader sclass="indigo" label="Nombre" />
+                    <listheader sclass="indigo" label="Descripcion" />
+                    <listheader sclass="indigo" label="Estado" />
+                    <listheader sclass="indigo" label="$ Precio" width="20%"/>
+                </listhead>
+                <template name="model">
+                    <listitem sclass="row-border item">
+                        <listcell label="${each.nombre}"/>
+                        <listcell label="${each.descripcion}"/>
+                        <listcell label="${each.estado}"/>
+                        <listcell label="${each.monto}"/>
+                    </listitem>
+                </template>
+            </listbox>
+            <hbox id="detBox" visible="false" sclass="top-space pub-detalle">
+                <vbox>
+                    <label value="Descripcion del Producto" sclass="f-underline" />
+                    <label id="nombreLabel"/>
+                    <label id="descripcionLabel" />
+                    <hbox>
+                        <label value="Estado:" />
+                        <label id="estadoLabel" />
+                    </hbox>
+                    <hbox>
+                        <label value="Precio:" />
+                        <label id="montoLabel"/>
+                    </hbox>
+                    <label value="Propietario" sclass="f-underline" />
+                    <hbox>
+                        <label id="ownerLabel" />
+                        <label id="apeLabel" />
+                    </hbox>
+                    <label value="Estudios" sclass="f-underline" />
+                    <label id="carrLabel" />
+                    <label id="carrDirLabel" />
+                    <hbox>
+                        <label value="Telefono:" sclass="f-underline" />
+                        <label id="phoneLabel" />
+                    </hbox>
+                    <!-- Para validar boton contactar -->
+                    <label id="userLabel" value="${usuario.getCedula()}" visible="false" />
+                    <button id="btnContact" sclass="btn btn-pink" label="Contactar" />
+                </vbox>
+            </hbox>
+        </div>
+    </window>
 </zk>

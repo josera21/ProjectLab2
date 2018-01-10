@@ -48,6 +48,13 @@ body {
     height: 65px;
 }
 
+.pub-detalle {
+    margin: auto;
+    width: 70%;
+    border: 3px solid #3F51B5;
+    padding: 10px;
+}
+
 .footer {
     background-color:#2E2E2E;
     color: white;
@@ -75,6 +82,17 @@ body {
 .btn-grey {
     background-color: #607D8B;
     color: white;
+}
+
+.btn-pink {
+    background-color: #E91E63;
+    color: white;
+}
+
+.indigo {
+    background-color: #3F51B5;
+    color: white;
+    font-style: italic;
 }
 
 .norte{
@@ -126,6 +144,10 @@ body {
     font-family: Arial;
     color:white;
     border-style: none;
+}
+
+.f-underline {
+    text-decoration: underline;
 }
 
 .label{

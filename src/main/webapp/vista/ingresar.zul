@@ -29,8 +29,8 @@
                         <![CDATA[
                             try {
                                 dto.Usuario usuario = new dto.Usuario();
+                                usuario = servicio.buscarUsuarioPorCedula(cedula.getText());
                                 obeCtx.setUsuarioActual(usuario);
-                                //Executions.getCurrent().sendRedirect("/index.zul","_blank");
                                 Executions.sendRedirect("../index.zul");
                             } catch (Exception obeex) {
                                 Messagebox.show("Usuario y Password no Coinciden", "Error", Messagebox.OK, Messagebox.ERROR);

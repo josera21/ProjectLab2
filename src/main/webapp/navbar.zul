@@ -28,7 +28,8 @@
                     </menupopup>
                 </menu>
                 <menuitem sclass="right" if="${usuario != null}" 
-                          label="Logueado como ${usuario.getNombre()}">
+                          label="Logueado como ${usuario.getNombre()}"
+                          href="/vista/perfil.zul">
                 </menuitem>
             </menubar>
         </div>

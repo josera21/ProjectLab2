@@ -20,6 +20,7 @@
                         <panelchildren style="padding:5px;">
                             <vbox>
                                 <toolbarbutton label="Inicio" href="index.zul"/>
+                                <toolbarbutton label="Mi perfil" href="vista/perfil.zul"/>
                                 <toolbarbutton label="Decanatos" href="vista/decanato.zul"
                                 if="${usuario.getRol() == 2}"/>
                                 <toolbarbutton label="Carreras" href="vista/carrera.zul"

@@ -5,17 +5,6 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <zscript>
-        <![CDATA[
-            List deca = new ArrayList();
-            void cargar() {
-                deca = servicio.listDecanatos();
-                //binder.loadAll();
-            }
-            cargar();
-        ]]>
-    </zscript>
-    
     <window title="Registro de Decanato" border="normal" width="800px" height="400px" 
             sclass="center top-space" apply="controlador.CDecanato">
         <grid>
@@ -26,7 +15,7 @@
             <rows>
                 <row>
                     Nombre:
-                    <textbox id="nombre" maxlength="60" cols="40" value="${deca[0].getNombre()}"/>
+                    <textbox id="nombre" maxlength="60" cols="40"/>
                 </row>
                 <row>
                     Direccion:
