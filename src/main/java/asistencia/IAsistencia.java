@@ -37,4 +37,5 @@ public interface IAsistencia {
     // metodos de eliminar
     public void eliminarUsuario(Usuario usuario);
     public void eliminarDecanato(Decanato decanato);
+    public void eliminarArticulo(Articulo articulo);
 }

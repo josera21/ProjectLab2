@@ -21,10 +21,10 @@
                     </menupopup>
                 </menu>
            
-                <menu label="Usuarios" if="${usuario.getRol() == 2}" >
+                <menu label="Administrar" if="${usuario.getRol() == 2}" >
                     <menupopup>
-                        <menuitem label="Registrar" href="/vista/usuario.zul" />
-                        <menuitem label="Ingresar"  href="/vista/ingresar.zul" />	    				
+                        <menuitem label="Registrar usuario" href="/vista/usuario.zul" />
+                        <menuitem label="Administrar usuarios"  href="/vista/adminpanel.zul" />	    				
                     </menupopup>
                 </menu>
                 <menuitem sclass="right" if="${usuario != null}" 

@@ -76,7 +76,7 @@ public class Asistencia implements IAsistencia {
     public Carrera buscarCarreraPorCodigo(int codigo) {
         return (Carrera) hibernateDAO.findByKey(Carrera.class, codigo);
     }
-
+    
     @Override
     public List buscarUsuariosTodos() {
         return hibernateDAO.loadAll(Usuario.class);
@@ -111,5 +111,10 @@ public class Asistencia implements IAsistencia {
     @Override
     public void eliminarDecanato(Decanato decanato) {
         hibernateDAO.delete(decanato);
+    }
+    
+    @Override
+    public void eliminarArticulo(Articulo articulo) {
+        hibernateDAO.delete(articulo);
     }
 }

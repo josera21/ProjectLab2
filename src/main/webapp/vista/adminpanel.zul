@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+<window title="Usuarios registrados" width="90%" border="normal" sclass="center" closable="true"
+        apply="controlador.CAdmin">
+    <div>
+        <listbox if="${usuario.getRol() == 2}" id="boxUsers">
+                <listhead>
+                    <listheader width="50px" label="Icon" />
+                    <listheader label="Cedula" />
+                    <listheader label="Nombre" />                                
+                    <listheader label="Apellido" />
+                    <listheader label="Correo" />
+                    <listheader label="Telefono" />
+                    <listheader label="Carrera" />
+                    <listheader width="120px" label="Accion"/>
+                </listhead>
+                <template name="model">
+                    <listitem> 
+                        <listcell>
+                            <image src="/img/male.png"/>
+                        </listcell>
+                        <listcell label="${each.cedula}" />
+                        <listcell label="${each.nombre}" />
+                        <listcell label="${each.apellido}" />
+                        <listcell label="${each.correo}" />
+                        <listcell label="${each.telefono}" />
+                        <listcell label="${each.carrera.nombre}" />
+                        <listcell label="Eliminar" style="color: red" />				
+                    </listitem>	
+                </template>
+        </listbox>
+    </div>
+</window>
+</zk>
