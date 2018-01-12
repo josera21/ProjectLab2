@@ -3,9 +3,11 @@
 
 ## Frameworks and tools
 
-+ Is builded in JAVA with MVC using frameworks like Hibernate 5 (for the models), ZK 8.5 (for the views) and Spring 4 (for the Controller). 
++ Is builded in JAVA with MVC using frameworks like [Hibernate 5](http://hibernate.org/) (for the models), [ZK 8.5](https://www.zkoss.org/) (for the views) and [Spring 4](https://spring.io/) (for the Controller). 
 
-+ Is configured by default to work with MySQL database, but you can use PostgreSQL is you wish, just change the config in the JDCB.properties file. 
++ Is configured by default to work with MySQL database, but you can use PostgreSQL is you wish, just change the config in the JDCB.properties file.
+
++ Has a maven Project Structure for manage the dependencies
 
 ## For Run
 1. **You need start a server like Apache Tomcat which you can easy install and run with an IDE like [Netbeans](https://www.netbeans.org/) or [Eclipse](https://www.eclipse.org/)**
