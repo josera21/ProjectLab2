@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?link rel="stylesheet" type="text/css" href="/styles/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="../navbar.zul"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+<window title="Mis Publicaciones" width="90%" border="normal" sclass="center" closable="true"
+        apply="controlador.CMispublicaciones">
+    <div>
+        <label id="currentUser" value="${usuario.getCedula()}" visible="false" />
+        <listbox id="boxArts">
+                <listhead>
+                    <listheader label="Titulo" />                                
+                    <listheader label="Descripcion" />
+                    <listheader label="Estado" />
+                    <listheader label="Monto" />
+                    <listheader width="120px" label="Accion"/>
+                </listhead>
+                <template name="model">
+                    <listitem> 
+                        <listcell label="${each.nombre}" />
+                        <listcell label="${each.descripcion}" />
+                        <listcell label="${each.estado}" />
+                        <listcell label="${each.monto}" />
+                        <listcell label="Eliminar" style="color: red" />				
+                    </listitem>	
+                </template>
+        </listbox>
+    </div>
+</window>
+</zk>

@@ -29,6 +29,7 @@
                                 if="${usuario.getRol() == 2}" />
                                 <toolbarbutton label="Publicar" href="vista/articulo.zul"/>
                                 <toolbarbutton label="Publicaciones" href="vista/publicaciones.zul" />
+                                <toolbarbutton label="Mis Publicaciones" href="vista/mis_publicaciones.zul" />
                             </vbox>
                         </panelchildren>
                     </panel>

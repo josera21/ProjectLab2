@@ -18,6 +18,7 @@
                     <menupopup>                                        
                         <menuitem label="Publicar articulos" href="/vista/articulo.zul" />
                         <menuitem label="Ver publicaciones" href="/vista/publicaciones.zul" />
+                        <menuitem label="Mis publicaciones" href="/vista/mis_publicaciones.zul" />
                     </menupopup>
                 </menu>
            
